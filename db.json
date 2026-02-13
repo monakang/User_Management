@@ -1,0 +1,22 @@
+{
+  "user": [
+    {
+      "id": "95a4",
+      "name": "Test3",
+      "email": "Test3@g.c",
+      "gender": "Male"
+    },
+    {
+      "id": "2405",
+      "name": "test5",
+      "email": "test@g.in",
+      "gender": "Female"
+    },
+    {
+      "id": "b55d",
+      "name": "teast4",
+      "email": "fgdg@uy",
+      "gender": "Male"
+    }
+  ]
+}

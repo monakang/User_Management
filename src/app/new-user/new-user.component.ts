@@ -1,4 +1,12 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Inject,
+  Input,
+  input,
+  inject,
+  Optional,
+} from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import {
   FormGroup,
@@ -17,6 +25,7 @@ import {
   MAT_DIALOG_DATA,
   MatDialogRef,
 } from '@angular/material/dialog';
+import { Router, RouterLink } from '@angular/router';
 @Component({
   selector: 'app-new-user',
   imports: [
@@ -31,14 +40,15 @@ import {
   templateUrl: './new-user.component.html',
   styleUrl: './new-user.component.css',
 })
-export class NewUserComponent {
+export class NewUserComponent implements OnInit {
+  private router = inject(Router);
   constructor(
     private userService: UserService,
-    private _dialogRef: MatDialogRef<NewUserComponent>,
+    @Optional() private _dialogRef: MatDialogRef<NewUserComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {}
   userForm!: FormGroup;
-  Users: User[] = [];
+  User: User[] = [];
 
   ngOnInit() {
     this.userForm = new FormGroup({
@@ -48,21 +58,19 @@ export class NewUserComponent {
     });
 
     if (this.data) {
-      this.userForm.patchValue(this.data);
+      this.getUserbyId(this.data);
     }
   }
 
   onFormSubmit() {
     if (this.userForm.valid) {
       if (this.data) {
-        this.userService
-          .updateUser(this.data.id, this.userForm.value)
-          .subscribe({
-            next: (val: any) => {
-              this._dialogRef.close(true); //
-            },
-            error: console.log,
-          });
+        this.userService.updateUser(this.data, this.userForm.value).subscribe({
+          next: (val: any) => {
+            this._dialogRef.close(true); //
+          },
+          error: console.log,
+        });
       } else {
         this.userService.addUser(this.userForm.value).subscribe({
           next: (val: any) => {
@@ -71,6 +79,13 @@ export class NewUserComponent {
           error: console.log,
         });
       }
+      this.router.navigate(['/user']); // Navigate to the user list after form submission
     }
+  }
+
+  getUserbyId(id: string) {
+    this.userService.GetUserById(id).subscribe((Userdata) => {
+      this.userForm.patchValue(Userdata);
+    });
   }
 }

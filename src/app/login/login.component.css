@@ -1,0 +1,13 @@
+.main-body {
+  padding-top: 20px;
+  margin: 0 auto;
+  max-width: 210px;
+  mat-form-field {
+    width: 100%;
+  }
+  .background {
+    background-size: cover;
+    background-position: center;
+    background-color: #4f0202;
+  }
+}

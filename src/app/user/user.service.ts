@@ -20,14 +20,14 @@ export class UserService {
     return this.http.get(this.apiUrl);
   }
 
-  GetUserById(id: number) {
+  GetUserById(id: string) {
     return this.http.get<User>(`${this.apiUrl}/${id}`);
   }
 
   updateUser(index: number, user: User) {
     return this.http.put(`${this.apiUrl}/${index}`, user);
   }
-  deleteUser(index: string) {
+  deleteUser(index: number) {
     return this.http.delete(`${this.apiUrl}/${index}`);
   }
 }

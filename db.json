@@ -1,22 +1,41 @@
 {
   "user": [
     {
-      "id": "95a4",
-      "name": "Test3",
-      "email": "Test3@g.c",
+      "id": "c185",
+      "name": "User1",
+      "email": "user1@g.c",
       "gender": "Male"
     },
     {
-      "id": "2405",
-      "name": "test5",
-      "email": "test@g.in",
+      "id": "2eb0",
+      "name": "User2",
+      "email": "User2@g.c",
+      "gender": "Male"
+    },
+    {
+      "id": "191e",
+      "name": "User3",
+      "email": "user3@g.c",
       "gender": "Female"
     },
     {
-      "id": "b55d",
-      "name": "teast4",
-      "email": "fgdg@uy",
-      "gender": "Male"
+      "id": "32fc",
+      "name": "User4",
+      "email": "user4@g.f",
+      "gender": "Female"
+    },
+    {
+      "id": "b416",
+      "name": "User5",
+      "email": "user5@g.c",
+      "gender": "Female"
+    }
+  ],
+  "authenicate": [
+    {
+      "username": "admin",
+      "password": "123",
+      "tokenId": "dummy-token-id"
     }
   ]
 }

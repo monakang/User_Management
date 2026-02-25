@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 //import { RouterOutlet } from '@angular/router';
 
-import { UserComponent } from './user/user.component';
-//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import { UserComponent } from './user/user.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [UserComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

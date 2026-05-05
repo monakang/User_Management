@@ -1,1 +1,7 @@
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
+mark {
+  background-color: #efadd4;
+  color: #0f5132;
+  border-radius: 4px;
+  padding: 0 2px;
+}

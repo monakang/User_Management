@@ -17,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { User } from '../user/user.model';
 import { MatSort, MatSortModule } from '@angular/material/sort';
+import { HighlightSearchDirective } from '../directive/highlight-search.directive';
 @Component({
   selector: 'app-generic-table',
   imports: [
@@ -30,12 +31,14 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
     MatIconModule,
     MatToolbarModule,
     RouterLink,
+    HighlightSearchDirective,
   ],
   templateUrl: './generic-table.component.html',
   styleUrl: './generic-table.component.css',
 })
 export class GenericTableComponent {
   myDataSource = input.required<MatTableDataSource<User>>();
+  searchText: string = '';
 
   // This function runs automatically the second the paginator appears in HTML
   @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
@@ -62,6 +65,7 @@ export class GenericTableComponent {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
+    this.searchText = filterValue.trim().toLowerCase();
     this.myDataSource().filter = filterValue.trim().toLowerCase();
 
     if (this.myDataSource().paginator) {

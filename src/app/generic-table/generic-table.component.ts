@@ -18,6 +18,8 @@ import { RouterLink } from '@angular/router';
 import { User } from '../user/user.model';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { HighlightSearchDirective } from '../directive/highlight-search.directive';
+
+import { TitleCasePipe } from '../pipe/title-case.pipe';
 @Component({
   selector: 'app-generic-table',
   imports: [
@@ -32,6 +34,7 @@ import { HighlightSearchDirective } from '../directive/highlight-search.directiv
     MatToolbarModule,
     RouterLink,
     HighlightSearchDirective,
+    TitleCasePipe,
   ],
   templateUrl: './generic-table.component.html',
   styleUrl: './generic-table.component.css',

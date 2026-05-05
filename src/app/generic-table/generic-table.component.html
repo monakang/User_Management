@@ -18,9 +18,9 @@
           mat-cell
           *matCellDef="let row"
           [appHighlightSearch]="searchText"
-          [originalText]="row.name"
+          [originalText]="row.name | titleCase"
         >
-          {{ row.name }}
+          {{ row.name | titleCase }}
         </td>
       </ng-container>
 

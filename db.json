@@ -1,41 +1,32 @@
 {
   "user": [
     {
-      "id": "c185",
       "name": "User1",
-      "email": "user1@g.c",
-      "gender": "Male"
+      "email": "user1@d.v",
+      "gender": "Female",
+      "jobTitle": "Designer",
+      "id": "3"
     },
     {
-      "id": "2eb0",
-      "name": "User2",
-      "email": "User2@g.c",
-      "gender": "Male"
+      "name": "User name2",
+      "email": "usern2@ds.v",
+      "gender": "Male",
+      "jobTitle": "Developer",
+      "id": "4"
     },
     {
-      "id": "191e",
-      "name": "User3",
-      "email": "user3@g.c",
-      "gender": "Female"
+      "name": "user name3",
+      "email": "usern3@efd.v",
+      "gender": "Male",
+      "jobTitle": "Product Owner",
+      "id": "5"
     },
     {
-      "id": "32fc",
-      "name": "User4",
-      "email": "user4@g.f",
-      "gender": "Female"
-    },
-    {
-      "id": "b416",
-      "name": "User5",
-      "email": "user5@g.c",
-      "gender": "Female"
-    }
-  ],
-  "authenicate": [
-    {
-      "username": "admin",
-      "password": "123",
-      "tokenId": "dummy-token-id"
+      "name": "User 4",
+      "email": "user4@fd.v",
+      "gender": "Male",
+      "jobTitle": "Manager",
+      "id": "1"
     }
   ]
 }

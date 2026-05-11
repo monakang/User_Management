@@ -20,6 +20,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
 import {
   MatDialog,
   MAT_DIALOG_DATA,
@@ -36,6 +37,7 @@ import { Router, RouterLink } from '@angular/router';
     MatButtonModule,
     MatRadioButton,
     MatRadioGroup,
+    MatSelectModule,
   ],
   templateUrl: './new-user.component.html',
   styleUrl: './new-user.component.css',
@@ -55,6 +57,7 @@ export class NewUserComponent implements OnInit {
       name: new FormControl(null, Validators.required),
       email: new FormControl(null, [Validators.required, Validators.email]),
       gender: new FormControl('Male'),
+      jobTitle: new FormControl(null, Validators.required),
     });
 
     if (this.data) {
@@ -83,7 +86,7 @@ export class NewUserComponent implements OnInit {
     }
   }
 
-  getUserbyId(id: string) {
+  getUserbyId(id: number) {
     this.userService.GetUserById(id).subscribe((Userdata) => {
       this.userForm.patchValue(Userdata);
     });

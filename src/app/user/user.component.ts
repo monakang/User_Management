@@ -73,7 +73,13 @@ export class UserComponent implements OnInit {
 
   Users: User[] = [];
 
-  displayedColumns: string[] = ['name', 'email', 'gender', 'action'];
+  displayedColumns: string[] = [
+    'name',
+    'email',
+    'gender',
+    'jobTitle',
+    'action',
+  ];
 
   users = input.required<User[]>();
   dataSource = new MatTableDataSource<User>();
@@ -84,11 +90,11 @@ export class UserComponent implements OnInit {
   userForm!: FormGroup;
 
   ngOnInit() {
-    this.userForm = new FormGroup({
-      name: new FormControl(null, Validators.required),
-      email: new FormControl(null, [Validators.required, Validators.email]),
-      gender: new FormControl('Male', Validators.required),
-    });
+    // this.userForm = new FormGroup({
+    //   name: new FormControl(null, Validators.required),
+    //   email: new FormControl(null, [Validators.required, Validators.email]),
+    //   gender: new FormControl('Male', Validators.required),
+    // });
 
     this.getUserList();
     this.newUserUpdateService.refreshTable$.subscribe(() => {

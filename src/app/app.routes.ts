@@ -5,6 +5,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { NewUserComponent } from './new-user/new-user.component';
 import { LoginComponent } from './login/login.component';
 import { UserDialogComponent } from './user-dialog/user-dialog.component';
+import { SearchComponent } from './search/search/search.component';
+import { JobSearchComponent } from './search/job-search/job-search.component';
+import { UserSearchComponent } from './search/user-search/user-search.component';
+import { UserIdSearchComponent } from './search/user-id-search/user-id-search.component';
 
 export const routes: Routes = [
   {
@@ -64,6 +68,15 @@ export const routes: Routes = [
         path: 'edit', // e.g., /users/123
         component: UserDialogComponent,
       },
+    ],
+  },
+  {
+    path: 'search',
+    component: SearchComponent, // This component holds the <mat-toolbar>
+    children: [
+      { path: 'jobSearch', component: JobSearchComponent },
+      { path: 'userIdSearch', component: UserIdSearchComponent },
+      { path: 'userSearch', component: UserSearchComponent },
     ],
   },
 

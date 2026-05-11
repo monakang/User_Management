@@ -1,0 +1,35 @@
+<div class="centered-header">
+  <section>
+    <form [formGroup]="jobSearchForm" (submit)="onFormSubmit()">
+      <div class="main-body">
+        <mat-form-field appearance="outline">
+          <mat-label>Job Title</mat-label>
+
+          <mat-select formControlName="jobTitle">
+            <mat-option value="Developer">Developer</mat-option>
+            <mat-option value="Manager">Manager</mat-option>
+            <mat-option value="Designer">Designer</mat-option>
+            <mat-option value="Product Owner">Product Owner</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <span></span>
+        <div>
+          <button mat-raised-button color="primary" type="submit">
+            Search
+          </button>
+        </div>
+      </div>
+    </form>
+  </section>
+</div>
+
+<div>
+  @if (submittedSearchValue) {
+    <app-search-results
+      [searchType]="'jobTitle'"
+      [searchValue]="submittedSearchValue"
+    ></app-search-results>
+  } @else {
+    <div class="centered">Please select a job title and click Search.</div>
+  }
+</div>

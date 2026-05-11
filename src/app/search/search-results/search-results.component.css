@@ -1,0 +1,33 @@
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+th.mat-mdc-header-cell,
+td.mat-mdc-cell {
+  text-align: center;
+  justify-content: center;
+
+  ::ng-deep .mat-sort-header-container {
+    justify-content: center;
+  }
+
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+}
+.main-body {
+  padding-top: 20px;
+  margin: 0 auto;
+  max-width: 1348px;
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+.action {
+  display: flex;
+  gap: 5px;
+}

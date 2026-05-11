@@ -49,6 +49,18 @@
           {{ row.gender }}
         </td>
       </ng-container>
+      <!-- Job Title Column -->
+      <ng-container matColumnDef="jobTitle">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Job Title</th>
+        <td
+          mat-cell
+          *matCellDef="let row"
+          [appHighlightSearch]="searchText"
+          [originalText]="row.jobTitle"
+        >
+          {{ row.jobTitle }}
+        </td>
+      </ng-container>
 
       <!-- Action Column -->
       <ng-container matColumnDef="action">

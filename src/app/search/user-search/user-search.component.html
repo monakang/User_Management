@@ -1,0 +1,34 @@
+<div class="centered-header">
+  <section>
+    <form [formGroup]="userSearchForm" (submit)="onFormSubmit()">
+      <div class="main-body">
+        <mat-form-field appearance="outline">
+          <mat-label>User Name</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Ex. John Doe"
+            formControlName="userName"
+          />
+        </mat-form-field>
+        <span></span>
+        <div>
+          <button mat-raised-button color="primary" type="submit">
+            Search
+          </button>
+        </div>
+      </div>
+    </form>
+  </section>
+</div>
+
+<div>
+  @if (submittedSearchValue) {
+    <app-search-results
+      [searchType]="submittedSearchType"
+      [searchValue]="submittedSearchValue"
+    ></app-search-results>
+  } @else {
+    <div class="centered">Please enter a user name and click Search.</div>
+  }
+</div>

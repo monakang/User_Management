@@ -1,0 +1,9 @@
+{
+  "userColumns": [
+    { "columnDef": "id", "header": "User Id" },
+    { "columnDef": "name", "header": "Name", "pipe": "titleCase" },
+    { "columnDef": "email", "header": "Email" },
+    { "columnDef": "gender", "header": "Gender" },
+    { "columnDef": "jobTitle", "header": "Job Title" }
+  ]
+}

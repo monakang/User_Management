@@ -24,10 +24,13 @@
 </div>
 
 <div>
-  @if (submittedSearchValue) {
+  @if (searchType && searchValue) {
     <app-search-results
-      [searchType]="'jobTitle'"
-      [searchValue]="submittedSearchValue"
+      [data]="dataSource.data"
+      [columns]="userColumns"
+      [isLoading]="isLoading"
+      [searchType]="searchType"
+      [searchValue]="searchValue"
     ></app-search-results>
   } @else {
     <div class="centered">Please select a job title and click Search.</div>

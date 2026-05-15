@@ -10,7 +10,7 @@ import {
 } from '@angular/forms';
 import { MatToolbar } from '@angular/material/toolbar';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../auth/authentication.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
@@ -30,6 +30,7 @@ export class LoginComponent {
   private authService = inject(AuthenticationService);
   loginForm!: FormGroup;
   private destroyRef = inject(DestroyRef);
+
   ngOnInit() {
     this.loginForm = new FormGroup({
       username: new FormControl(null, Validators.required),
@@ -38,15 +39,14 @@ export class LoginComponent {
   }
   onFormSubmit() {
     if (this.loginForm.valid) {
-      this.authService
-        .loginUser(this.loginForm.value)
-        .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe({
-          next: (val: any) => {
-            localStorage.setItem('token', val.token); // Store token in localStorage
-            this.router.navigate(['/user']);
-          },
-        });
+      this.authService.loginUser(this.loginForm.value).subscribe({
+        next: (val: any) => {
+          localStorage.setItem('token', val.token); // Store token in localStorage
+          localStorage.setItem('refreshToken', val.refreshToken); // Save refresh token
+          this.router.navigate(['/user']);
+        },
+        error: (err) => console.error('Login failed', err),
+      });
     }
   }
 }

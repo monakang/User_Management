@@ -19,6 +19,7 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient) {}
 
+  //User Login Method
   loginUser(LoginUser: {
     username: string;
     password: string;
@@ -28,10 +29,31 @@ export class AuthenticationService {
       password: '123',
       token: 'fake-jwt-token-456',
     };
+
     // Return dummy data as an observable with a 1-second delay
     return of(dummyUser).pipe(
       delay(1000),
-      tap((user) => this.currentUser.set(user)), // Update Signal state
+      tap((user) => this.currentUser.set(user)),
     );
+  }
+
+  //Refresh Token Method
+  refreshToken(): Observable<any> {
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    return of({ token: 'new-fake-jwt-token-789' }).pipe(
+      delay(500),
+      tap((res) =>
+        this.currentUser.update((user) =>
+          user ? { ...user, token: res.token } : null,
+        ),
+      ),
+    );
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('refreshToken');
+    this.currentUser.set(null);
   }
 }

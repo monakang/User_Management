@@ -11,7 +11,6 @@ import {
 import { MatToolbar } from '@angular/material/toolbar';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../auth/authentication.service';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-login',
@@ -36,6 +35,7 @@ export class LoginComponent {
       username: new FormControl(null, Validators.required),
       password: new FormControl(null, Validators.required),
     });
+    this.authService.logout(); // Clear any existing session on component init
   }
   onFormSubmit() {
     if (this.loginForm.valid) {
@@ -43,6 +43,7 @@ export class LoginComponent {
         next: (val: any) => {
           localStorage.setItem('token', val.token); // Store token in localStorage
           localStorage.setItem('refreshToken', val.refreshToken); // Save refresh token
+
           this.router.navigate(['/user']);
         },
         error: (err) => console.error('Login failed', err),

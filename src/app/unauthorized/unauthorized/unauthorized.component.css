@@ -1,0 +1,37 @@
+.unauthorized-box {
+  text-align: center;
+  max-width: 450px;
+  margin: 100px auto;
+  padding: 30px;
+  border: 1px solid #ecc9c9;
+  background-color: #fff5f5;
+  border-radius: 8px;
+  font-family: system-ui, sans-serif;
+}
+.lock-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 15px;
+}
+h1 {
+  color: #c53030;
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+}
+p {
+  color: #742a2a;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+.btn-back {
+  display: inline-block;
+  background-color: #c53030;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+}
+.btn-back:hover {
+  background-color: #9b2c2c;
+}

@@ -28,6 +28,17 @@ export class UserService {
   }
 
   getLatestId() {
+    return this.http.get<User[]>(this.apiUrl).pipe(
+      map((users) => {
+        if (!users || users.length === 0) return 0;
+
+        // Convert string IDs to Numbers to find the maximum
+        return users.reduce((max, user) => {
+          const currentId = Number(user.id);
+          return currentId > max ? currentId : max;
+        }, 0);
+      }),
+    );
     /* return this.http.get<User[]>(this.apiUrl).pipe(
       map((users) => {
         if (!users || users.length === 0) return 0;
@@ -40,9 +51,9 @@ export class UserService {
     );*/
 
     // to get 1 record, sorted by id descending
-    return this.http
-      .get<User[]>(`${this.apiUrl}?_sort=id&_order=desc&_limit=1`)
-      .pipe(map((users) => (users.length > 0 ? Number(users[0].id) : 0)));
+    // return this.http
+    // .get<User[]>(`${this.apiUrl}?_sort=id&_order=desc&_limit=1`)
+    // .pipe(map((users) => (users.length > 0 ? Number(users[0].id) : 0)));
   }
 
   GetUserById(id: number) {

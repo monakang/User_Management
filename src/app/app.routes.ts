@@ -3,6 +3,7 @@ import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { authGuard } from './auth/auth.guard';
 import { UnauthorizedComponent } from './unauthorized/unauthorized/unauthorized.component';
+import { canDeactivateGuard } from './auth/can-deactive.guard';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -32,6 +33,7 @@ export const routes: Routes = [
           import('./user-dialog/user-dialog.component').then(
             (m) => m.UserDialogComponent,
           ),
+        canDeactivate: [canDeactivateGuard],
       },
       {
         path: 'edit/:id',
@@ -39,6 +41,7 @@ export const routes: Routes = [
           import('./user-dialog/user-dialog.component').then(
             (m) => m.UserDialogComponent,
           ),
+        canDeactivate: [canDeactivateGuard],
       },
       {
         path: 'edit',
@@ -46,6 +49,7 @@ export const routes: Routes = [
           import('./user-dialog/user-dialog.component').then(
             (m) => m.UserDialogComponent,
           ),
+        canDeactivate: [canDeactivateGuard],
       },
     ],
   },

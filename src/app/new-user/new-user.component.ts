@@ -2,10 +2,9 @@ import {
   Component,
   OnInit,
   Inject,
-  Input,
-  input,
   inject,
   Optional,
+  HostListener,
 } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import {
@@ -21,12 +20,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
-import {
-  MatDialog,
-  MAT_DIALOG_DATA,
-  MatDialogRef,
-} from '@angular/material/dialog';
-import { Router, RouterLink } from '@angular/router';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { CanComponentDeactivate } from '../auth/can-deactive.guard';
+
 @Component({
   selector: 'app-new-user',
   imports: [
@@ -42,15 +39,17 @@ import { Router, RouterLink } from '@angular/router';
   templateUrl: './new-user.component.html',
   styleUrl: './new-user.component.css',
 })
-export class NewUserComponent implements OnInit {
+export class NewUserComponent implements OnInit, CanComponentDeactivate {
   private router = inject(Router);
+
+  userForm!: FormGroup;
+  isSaved = false;
+
   constructor(
     private userService: UserService,
     @Optional() private _dialogRef: MatDialogRef<NewUserComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {}
-  userForm!: FormGroup;
-  User: User[] = [];
 
   ngOnInit() {
     this.userForm = new FormGroup({
@@ -65,24 +64,45 @@ export class NewUserComponent implements OnInit {
     }
   }
 
+  @HostListener('keydown.escape', ['$event'])
+  onKeydownHandler(event: any) {
+    this.onCancel();
+  }
+
+  onCancel() {
+    if (this.canDeactivate()) {
+      this.close();
+    }
+  }
+
+  canDeactivate(): boolean {
+    if (this.userForm.pristine || this.isSaved) {
+      return true;
+    }
+    return confirm('You have unsaved changes! Are you sure you want to leave?');
+  }
+
+  private close() {
+    if (this._dialogRef) {
+      this._dialogRef.close();
+    } else {
+      this.router.navigate(['/user']);
+    }
+  }
+
   onFormSubmit() {
     if (this.userForm.valid) {
-      if (this.data) {
-        this.userService.updateUser(this.data, this.userForm.value).subscribe({
-          next: (val: any) => {
-            this._dialogRef.close(true); //
-          },
-          error: console.log,
-        });
-      } else {
-        this.userService.addUser(this.userForm.value).subscribe({
-          next: (val: any) => {
-            this._dialogRef.close(true); //
-          },
-          error: console.log,
-        });
-      }
-      this.router.navigate(['/user']); // Navigate to the user list after form submission
+      this.isSaved = true;
+      const request$ = this.data
+        ? this.userService.updateUser(this.data, this.userForm.value)
+        : this.userService.addUser(this.userForm.value);
+
+      request$.subscribe({
+        next: () => {
+          this.close();
+        },
+        error: console.log,
+      });
     }
   }
 

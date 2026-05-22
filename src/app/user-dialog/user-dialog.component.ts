@@ -21,6 +21,7 @@ export class UserDialogComponent implements OnInit {
   ngOnInit(): void {
     const dialogRef = this.dialog.open(NewUserComponent, {
       width: '500px',
+      disableClose: true,
       // data:DataTransfer,
       data: this.route.snapshot.params['id'], // Pass URL params to dialog
     });

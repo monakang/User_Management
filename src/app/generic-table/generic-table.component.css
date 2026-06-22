@@ -15,3 +15,73 @@
   display: flex;
   gap: 5px;
 }
+
+/* Container to elevate the table with clean edges */
+.table-container {
+  margin-top: 20px;
+  border-radius: 8px;
+  overflow: hidden; /* clips the table corners to match the border-radius */
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.05),
+    0 1px 3px rgba(0, 0, 0, 0.03);
+  border: 1px solid #e0e0e0;
+  background-color: #ffffff;
+}
+
+/* Base table adjustments */
+table.mat-mdc-table {
+  width: 100%;
+  background-color: transparent;
+}
+
+/* Custom Primary Theme for Header Row */
+.mat-mdc-header-row {
+  background-color: #f8f9fa; /* Sleek off-white header strip */
+}
+
+/* Styled Header Cells */
+th.mat-mdc-header-cell {
+  color: #3f51b5 !important; /* Forces your primary theme color (e.g., Indigo) */
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 16px !important;
+}
+
+/* Data Row Styling */
+.mat-mdc-row {
+  transition: background-color 0.2s ease;
+}
+
+/* Elegant smooth hover effect on rows */
+.mat-mdc-row:hover {
+  background-color: rgba(
+    63,
+    81,
+    181,
+    0.04
+  ) !important; /* Subtle tint matching your primary theme */
+  cursor: pointer;
+}
+
+/* Clean Data Cells */
+td.mat-mdc-cell {
+  font-size: 0.875rem;
+  color: #444444;
+  padding: 14px 16px !important;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* Smooth out the "No Data" state fallback */
+.mat-mdc-no-data-row td {
+  padding: 32px !important;
+  text-align: center;
+  color: #757575;
+  font-style: italic;
+}
+
+/* Clean paginator styling to match the background */
+mat-paginator {
+  background-color: #f8f9fa;
+  border-top: 1px solid #e0e0e0;
+}

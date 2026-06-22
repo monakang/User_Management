@@ -12,6 +12,8 @@ import { MatToolbar } from '@angular/material/toolbar';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../auth/authentication.service';
 
+import { MatCardModule } from '@angular/material/card';
+
 @Component({
   selector: 'app-login',
   imports: [
@@ -20,6 +22,7 @@ import { AuthenticationService } from '../auth/authentication.service';
     MatButtonModule,
     ReactiveFormsModule,
     MatToolbar,
+    MatCardModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',

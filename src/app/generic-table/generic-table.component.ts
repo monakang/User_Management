@@ -1,10 +1,10 @@
 import {
-  AfterViewInit,
-  ViewChild,
   Component,
   input,
   Input,
-  output,
+  Output,
+  EventEmitter,
+  ViewChild,
 } from '@angular/core';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -14,25 +14,25 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router'; // You can remove this if no longer routing
 import { User } from '../user/user.model';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { HighlightSearchDirective } from '../directive/highlight-search.directive';
-
 import { TitleCasePipe } from '../pipe/title-case.pipe';
+
 @Component({
   selector: 'app-generic-table',
+  standalone: true,
   imports: [
     MatTableModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatTableModule,
-    MatSortModule,
     MatPaginatorModule,
+    MatSortModule,
     MatIconModule,
     MatToolbarModule,
-    RouterLink,
+
     HighlightSearchDirective,
     TitleCasePipe,
   ],
@@ -40,36 +40,45 @@ import { TitleCasePipe } from '../pipe/title-case.pipe';
   styleUrl: './generic-table.component.css',
 })
 export class GenericTableComponent {
+  // Inputs
   myDataSource = input.required<MatTableDataSource<User>>();
+  @Input() displayedColumns: string[] = [];
+
   searchText: string = '';
 
-  // This function runs automatically the second the paginator appears in HTML
+  // Outputs - Ensure these are only declared ONCE
+  @Output() edit = new EventEmitter<User>();
+  @Output() delete = new EventEmitter<number>();
+
+  // ViewChild setters for Paginator and Sort
   @ViewChild(MatPaginator) set matPaginator(mp: MatPaginator) {
     if (mp) {
-      // Link the paginator to the current value of the signal
       this.myDataSource().paginator = mp;
     }
   }
+
   @ViewChild(MatSort) set matSort(ms: MatSort) {
     if (ms) {
       this.myDataSource().sort = ms;
     }
   }
-  @Input() displayedColumns: string[] = [];
-  // 1. Declare output signals for parent to handle
 
-  delete = output<any>();
+  // --- Methods ---
 
-  // 2. Methods to emit the data back to parent
+  onEditClick(row: any) {
+    console.log('Edit button clicked for user:', row);
+    this.edit.emit(row);
+  }
 
-  onDeleteUser(row: any) {
-    this.delete.emit(row);
+  onDeleteUser(id: number) {
+    console.log('Delete button clicked for user:', id);
+    this.delete.emit(id);
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.searchText = filterValue.trim().toLowerCase();
-    this.myDataSource().filter = filterValue.trim().toLowerCase();
+    this.myDataSource().filter = this.searchText;
 
     if (this.myDataSource().paginator) {
       this.myDataSource().paginator?.firstPage();

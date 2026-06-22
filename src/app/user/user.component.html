@@ -1,55 +1,35 @@
-<!-- Basic Table
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Gender</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    @for (user of Users; track user.name) {
-      <tr>
-        <td>{{ user.name }}</td>
-        <td>{{ user.email }}</td>
-        <td style="width: 20%">{{ user.gender }}</td>
+<!-- <mat-toolbar> -->
+<!-- <span></span>
+  <span class="example-spacer"></span> -->
+<!-- If this is for ADDING a user, pass null or an empty object -->
+<button
+  mat-raised-button
+  color="primary"
+  (click)="showUserDetails.set(true); selectedUser.set(null)"
+>
+  + USER
+</button>
+<!-- </mat-toolbar> -->
 
-        <td>
-          <button (click)="editUser(1)" type="button">Edit</button>
-        </td>
-        <td>
-          <button (click)="deleteUser(1)" type="button">Delete</button>
-        </td>
-      </tr>
-    }
-  </tbody>
-</table>
--->
-<!--Table with Angular Material -->
-<mat-toolbar color="primary">
-  <span> CRUD with Reactive Form</span>
-  <span class="example-spacer"></span>
-
-  <!-- <button mat-raised-button (click)="onAddUser()">ADD USER</button>-->
-  <button
-    mat-raised-button
-    color="accent"
-    [routerLink]="['new']"
-    routerLinkActive="router-link-active"
-  >
-    <!-- (click)="onAddUser()"-->
-    ADD USER
-  </button>
-</mat-toolbar>
 <div class="list-container">
   <app-generic-table
     [myDataSource]="dataSource"
     [displayedColumns]="displayedColumns"
     (delete)="deleteUser($event)"
+    (edit)="onEditUser($event)"
   >
-    ></app-generic-table
-  >
+  </app-generic-table>
 </div>
 
-<router-outlet></router-outlet>
+@if (showUserDetails()) {
+  <div class="details-container">
+    <p></p>
+    <p>Enter/Update user details:</p>
+    <app-user-details
+      [user]="selectedUser()"
+      (saveSuccess)="showUserDetails.set(false); getUserList()"
+      (cancel)="showUserDetails.set(false)"
+    >
+    </app-user-details>
+  </div>
+}

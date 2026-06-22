@@ -1,0 +1,38 @@
+/* 1. Simplify the container to let Angular Material handle internal math */
+.sidenav-container {
+  height: 100vh;
+  width: 100%;
+}
+
+/* 2. Sidenav: Add a subtle background and cleaner border */
+mat-sidenav {
+  width: 240px; /* Slightly wider is standard for readability */
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+  background-color: #eeeff3;
+}
+
+/* 3. Toolbar: Use z-index and elevation for the "Material" look */
+.top-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 4. Content: Ensure this fills the space and handles overflow correctly */
+mat-sidenav-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto; /* Ensure only content scrolls, not the toolbar */
+}
+
+/* 5. Padding: Apply this to the wrapper of your <router-outlet> */
+.content-padding {
+  padding: 24px;
+  flex: 1;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}

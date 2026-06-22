@@ -1,0 +1,54 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <div mat-dialog-content class="content">
+    <div class="form-row">
+      <mat-form-field appearance="outline" subscriptSizing="dynamic">
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Ex. John Doe"
+          formControlName="name"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" subscriptSizing="dynamic">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="email"
+          placeholder="Ex. example@example.com"
+          formControlName="email"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" subscriptSizing="dynamic">
+        <mat-label>Job Title</mat-label>
+        <mat-select formControlName="jobTitle">
+          <mat-option value="Developer">Developer</mat-option>
+          <mat-option value="Manager">Manager</mat-option>
+          <mat-option value="Designer">Designer</mat-option>
+          <mat-option value="Product Owner">Product Owner</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row radio-row">
+      <label class="radio-label">Gender</label>
+      <mat-radio-group aria-label="Select an option" formControlName="gender">
+        <mat-radio-button value="Male">Male</mat-radio-button>
+        <mat-radio-button value="Female">Female</mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
+
+  <div mat-dialog-actions class="action">
+    <button mat-raised-button type="button" (click)="onCancel()">Cancel</button>
+    <button mat-raised-button color="primary" type="submit">
+      {{ data ? "Update" : "Save" }}
+    </button>
+  </div>
+</form>

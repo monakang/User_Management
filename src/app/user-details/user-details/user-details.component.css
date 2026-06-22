@@ -1,0 +1,56 @@
+.form-container {
+  max-width: 900px;
+  margin: 0;
+  padding: 20px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.section-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 24px;
+  color: #333;
+}
+
+form {
+  max-width: 500px;
+  margin: 1.5rem 0 1.5rem 114px;
+  /* margin: 1.5rem 0; */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tighten the gap between the form rows */
+.form-row {
+  margin-bottom: 12px;
+}
+
+.form-row mat-form-field {
+  width: 100%;
+}
+
+/* Radio Group section */
+.radio-row {
+  display: flex;
+  flex-direction: column;
+  padding: 4px 0 8px 4px;
+}
+
+.radio-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 8px;
+}
+
+mat-radio-button {
+  margin-right: 16px;
+}
+
+/* Dialog Action Buttons alignment */
+.action {
+  display: flex !important;
+  justify-content: flex-start;
+  gap: 12px;
+  padding-top: 16px;
+}

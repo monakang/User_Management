@@ -19,7 +19,7 @@ mat-sidenav {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* 4. Content: Ensure this fills the space and handles overflow correctly */
+/* This fills the space and handles overflow correctly */
 mat-sidenav-content {
   display: flex;
   flex-direction: column;
@@ -27,7 +27,6 @@ mat-sidenav-content {
   overflow-y: auto; /* Ensure only content scrolls, not the toolbar */
 }
 
-/* 5. Padding: Apply this to the wrapper of your <router-outlet> */
 .content-padding {
   padding: 24px;
   flex: 1;

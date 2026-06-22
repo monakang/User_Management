@@ -6,7 +6,7 @@ import { NewUserUpdate } from '../new-user/newUserUpdate.service';
 
 @Component({
   selector: 'app-user-dialog',
-  // imports: [NewUserComponent],
+
   templateUrl: './user-dialog.component.html',
   styleUrl: './user-dialog.component.css',
 })
@@ -22,11 +22,10 @@ export class UserDialogComponent implements OnInit {
     const dialogRef = this.dialog.open(NewUserComponent, {
       width: '500px',
       disableClose: true,
-      // data:DataTransfer,
-      data: this.route.snapshot.params['id'], // Pass URL params to dialog
+
+      data: this.route.snapshot.params['id'],
     });
 
-    // Navigate back to 'user' list when dialog is closed
     dialogRef.afterClosed().subscribe((result) => {
       this.router.navigate(['/user'], { relativeTo: this.route });
       if (result === true) {
